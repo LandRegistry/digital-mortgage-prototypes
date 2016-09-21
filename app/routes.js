@@ -55,6 +55,37 @@ router.use(function(req, res, next) {
   next();
 });
 
+/**
+ * Middleware to handle the storage and retrieval of form values in session storage
+ * Use case is to remember the state of a form element such as a checkbox across
+ * page reloads
+ */
+router.use(function(req, res, next) {
+
+  if(req.body.session) {
+    for(var index in req.body.session) {
+      if(req.body.session.hasOwnProperty(index)) {
+        req.session[index] = req.body.session[index];
+        console.log('Session based form value detected. Setting req.session[', index, '] as "', req.body.session[index], '"');
+      }
+    }
+  }
+
+  if(req.query.session) {
+    for(var index in req.query.session) {
+      if(req.query.session.hasOwnProperty(index)) {
+        req.session[index] = req.query.session[index];
+        console.log('Session based form value detected. Setting req.session[', index, '] as "', req.query.session[index], '"');
+      }
+    }
+  }
+
+  res.locals.session = req.session;
+
+  next();
+});
+
+
 // Route to display an error when invalid reference and/or dob entered
 router.get('/:type(user_research|future_sprints|current_sprint)/how-to-proceed', function (req, res) {
 

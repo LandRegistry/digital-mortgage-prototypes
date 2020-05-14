@@ -2,6 +2,8 @@
 
 ## News
 
+# This repository is no longer actively maintained or supported. It is supplied as is. Functionality and stability are not guaranteed
+
 **Upgrading from version 1 to 2:** the latest version of the kit (2.0.0 and later) is not compatible with previous versions. If you update your old prototypes you'll need to [convert them as well](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
 
 ## About the prototype kit
